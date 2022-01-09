@@ -8,14 +8,18 @@ public class Food : MonoBehaviour
     
     void Start()
     {
-        float spawnX = Random.Range(gridArea.bounds.min.x, gridArea.bounds.max.x);
-        float spawnY = Random.Range(gridArea.bounds.min.y, gridArea.bounds.max.y);
-        transform.position = new Vector3(spawnX, spawnY, 0);
+        Spawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.name == "Snake")
+            Spawn();
+    }
+    void Spawn()
+    {
+        int spawnX = (int)Random.Range(gridArea.bounds.min.x, gridArea.bounds.max.x);
+        int spawnY = (int)Random.Range(gridArea.bounds.min.y, gridArea.bounds.max.y);
+        transform.position = new Vector3(spawnX, spawnY, 0);
     }
 }
